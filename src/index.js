@@ -36,6 +36,16 @@ app.get('/:identifier', (req,res) => {
 
 });
 
+app.get('/', (req,res) => {
+
+  res.writeHead(200, {'Content-Type': 'text/html'});
+
+  res.write(new Document().get());
+
+  res.end();
+
+})
+
 server.listen(5000, "0.0.0.0").listen(5000, () => {
   console.log(`[SERVER] - Listening on port 5000!`);
 });

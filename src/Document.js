@@ -1,5 +1,5 @@
 const _DEFAULT = {
-  CODE: 'new Ground()'
+  CODE: undefined
 }
 
 export default class Document {

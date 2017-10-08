@@ -26,7 +26,7 @@ socket.on('connect', (data) => {
 
 });
 
-const code = window.__CODE__.code.deentitize();
+const code = window.__CODE__!==undefined&&window.__CODE__.code!==undefined?window.__CODE__.code.deentitize():undefined;
 
 new Console({code:code})
   .on('compile', (code) => {
