@@ -24,34 +24,31 @@ const _console = new Console({
 
 })
 .on('compile', (code) => {
+
   socket.emit('set', code);
+
 })
 .on('clear', (identifier) => {
-  console.log('!clear!');
+
+  socket.emit('remove', _console.identifier);
 
   //Clear url
   history.pushState(null, null, '/');
 
-  socket.emit('remove', _console.identifier);
-
 });
-
-console.log(_console)
 
 socket.on('connect', (data) => {
 
- console.log('[Socket] - Connected.');
+ // console.log('[Socket] - Connected.');
 
  socket.on('identifier', (identifier) => {
 
-    console.log('[Socket] - Received identifier: '+identifier);
+    // console.log('[Socket] - Received identifier: '+identifier);
 
     //Add url
     history.pushState(null, null, identifier);
 
     _console.identifier = identifier;
-
-    console.log(_console);
 
  });
 

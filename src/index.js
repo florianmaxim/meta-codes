@@ -9,7 +9,6 @@ import Document from './Document';
 const Database = new _Database();
 
 const app = express();
-
 const server = http.createServer(app);
 const io = _io(server);
 
@@ -45,7 +44,7 @@ app.get('/', (req,res) => {
 
   res.end();
 
-})
+});
 
 server.listen(5000, "0.0.0.0").listen(5000, () => {
   console.log(`[Server] - Listening on port 5000!`);
