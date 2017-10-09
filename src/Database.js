@@ -7,33 +7,39 @@ export default class Database {
     this.connection = mongodb.connect(this.url);
   }
 
-  get(identifier, cb){
+  select(identifier, cb){
 
-    console.log('[Database] - _ID: '+identifier)
+    console.log('[Database] - Select identifier: '+identifier)
 
     mongodb.connect(this.url, (err, db) => {
 
       db.collection("codes").find({ '_id': new mongodb.ObjectID(identifier)}).toArray((err, result) => {
         if (err) throw err;
-        console.log(result[0]);
+
+        //console.log('[Database] - Selected identifier: '+JSON.stringify(result[0]);
         cb(JSON.stringify(result[0]));
+
         db.close();
-        return;
+
       });
 
     });
 
   }
 
-  set(code, cb){
+  insert(code, cb){
+
+    //console.log('[Database] - Set code: '+code);
 
     mongodb.connect(this.url, (err, db) => {
 
       db.collection("codes").insertOne({code: code}, (err, res) => {
 
         if (err) throw err;
-        console.log('[Database] - Got identifier: '+res.insertedId);
 
+        //console.log('[Database] - Received identifier: '+res.insertedId);
+
+        //Callback identifier
         cb(res.insertedId);
 
         db.close();
@@ -44,14 +50,19 @@ export default class Database {
 
   }
 
-  remove(identifier){
+  remove(identifier, cb){
+
+    //console.log('[Database] - Remove identifier: '+identifier);
 
     mongodb.connect(this.url, (err, db) => {
 
-      db.collection("codes").remove({_id: ObjectID(identifier)}, (err, res)  => {
+      db.collection("codes").remove({_id: new mongodb.ObjectID(identifier)}, (err, res)  => {
+
         if (err) throw err
 
-        console.log(result);
+        //console.log('[Database] - Removed identifier: '+identifier);
+
+        cb(res);
 
         db.close();
 

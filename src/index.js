@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import http from 'http';
+import _io from 'socket.io';
 
 import _Database from './Database';
 import Document from './Document';
@@ -9,8 +10,8 @@ const Database = new _Database();
 
 const app = express();
 
-var server = require('http').createServer(app);
-var io     = require('socket.io')(server);
+const server = http.createServer(app);
+const io = _io(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -22,7 +23,7 @@ app.get('/:identifier', (req,res) => {
 
     console.log('[app] - /'+identifier);
 
-    Database.get(identifier, (code) => {
+    Database.select(identifier, (code) => {
 
       res.writeHead(200, {'Content-Type': 'text/html'});
 
@@ -47,21 +48,32 @@ app.get('/', (req,res) => {
 })
 
 server.listen(5000, "0.0.0.0").listen(5000, () => {
-  console.log(`[SERVER] - Listening on port 5000!`);
+  console.log(`[Server] - Listening on port 5000!`);
 });
 
 io.sockets.on('connection', (socket) => {
 
-  console.log(`[SOCKET] - Socket connected (${socket.id})`);
+  console.log(`[Socket] - Socket connected (${socket.id})`);
 
-  socket.on('code', (code) => {
+  socket.on('set', (code) => {
 
-    console.log(`[SOCKET] - Received code: (${JSON.stringify(code)})`);
+    console.log(`[Socket] - Received code: (${JSON.stringify(code)})`);
 
-    Database.set(code, (identifier) => {
+    Database.insert(code, (identifier) => {
 
       //Send identifier back
       socket.emit('identifier', identifier);
+
+    });
+
+  });
+
+  socket.on('remove', (identifier) => {
+
+    console.log(`[Socket] - Remove identifier: (${identifier})`);
+
+      Database.remove(identifier, (result) => {
+
 
     });
 
