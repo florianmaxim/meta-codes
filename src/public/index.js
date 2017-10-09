@@ -12,11 +12,16 @@ String.prototype.deentitize = function() {
 
 const socket = io.connect();
 
-const code = window.__CODE__!==undefined&&window.__CODE__.code!==undefined?window.__CODE__.code.deentitize():undefined;
+const code       = window.__CODE__!==undefined&&window.__CODE__.code!==undefined?window.__CODE__.code.deentitize():undefined;
+const identifier = window.__CODE__!==undefined&&window.__CODE__._id!==undefined?window.__CODE__._id:undefined;
 
 const _console = new Console({
+
   github:false,
-    code:code
+
+    code: code,
+    identifier: identifier
+
 })
 .on('compile', (code) => {
   socket.emit('set', code);
