@@ -30,7 +30,7 @@ const _console = new Console({
 })
 .on('clear', (identifier) => {
 
-  socket.emit('remove', _console.identifier);
+  // socket.emit('remove', _console.identifier);
 
   //Clear url
   history.pushState(null, null, '/');
