@@ -36,6 +36,8 @@ const _console = new Console({
 
 });
 
+console.log(_console)
+
 socket.on('connect', (data) => {
 
  console.log('[Socket] - Connected.');
