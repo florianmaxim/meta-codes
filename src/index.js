@@ -12,7 +12,6 @@ const app = express();
 const server = http.createServer(app);
 const io = _io(server);
 
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/:identifier', (req,res) => {
 
@@ -35,6 +34,8 @@ app.get('/:identifier', (req,res) => {
   }
 
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req,res) => {
 
