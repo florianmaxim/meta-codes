@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "http": "0.0.0",
-    "meta-console": "0.0.0-b68",
+    "meta-console": "0.0.0-b69",
     "mongodb": "^2.2.31",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3"
