@@ -34,7 +34,8 @@
     "webpack": "^3.5.5"
   },
   "dependencies": {
-    "meta-console": "0.0.0-b73",
+    "meta-client": "0.0.0-b97",
+    "meta-console": "0.0.0-79",
     "mongodb": "^2.2.31",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3"
