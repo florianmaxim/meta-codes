@@ -19,10 +19,11 @@ const _console = new Console({
 
   github:false,
 
-    code: code,
-    identifier: identifier
+  code: code,
+  identifier: identifier
 
 })
+
 .on('compile', (code) => {
 
   socket.emit('set', code);
