@@ -25,6 +25,7 @@
     "css-loader": "^0.28.7",
     "express": "^4.15.4",
     "html-webpack-plugin": "^2.30.1",
+    "http": "0.0.0",
     "node-sass": "^4.7.2",
     "npx": "^10.0.1",
     "path": "^0.12.7",
@@ -33,8 +34,7 @@
     "webpack": "^3.5.5"
   },
   "dependencies": {
-    "http": "0.0.0",
-    "meta-console": "0.0.0-b72",
+    "meta-console": "0.0.0-b73",
     "mongodb": "^2.2.31",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3"

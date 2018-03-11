@@ -17,7 +17,7 @@ const identifier = window.__CODE__!==undefined&&window.__CODE__._id!==undefined?
 
 const _console = new Console({
 
-  github:false,
+  github: true,
 
   code: code,
   identifier: identifier
