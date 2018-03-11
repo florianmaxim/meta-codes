@@ -1,3 +1,5 @@
+import * as config from '../config.json';
+
 import path from 'path';
 import express from 'express';
 import http from 'http';
