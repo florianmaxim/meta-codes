@@ -49,8 +49,8 @@ app.get('/', (req,res) => {
 
 });
 
-server.listen(5000, "0.0.0.0").listen(5000, () => {
-  console.log(`[Server] - Listening on port 5000!`);
+server.listen(config.port, "0.0.0.0").listen(config.port, () => {
+  console.log(`[Server] - Listening on port ${config.port}!`);
 });
 
 io.sockets.on('connection', (socket) => {
